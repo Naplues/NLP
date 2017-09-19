@@ -83,7 +83,7 @@ public class Main
 			property = Item.PROP_ADV;
 			break;
 		default:
-			property = -1;
+			property = Item.PROP_OTHER;
 			break;
 		}
 		return property;

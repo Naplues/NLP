@@ -7,6 +7,7 @@ package form;
 public class Item 
 {
 	//单词属性
+	public static int PROP_OTHER = -1;
 	public static int PROP_NONE = 0;
 	public static int PROP_ABBR = 1;
 	public static int PROP_NOUN = 2;
