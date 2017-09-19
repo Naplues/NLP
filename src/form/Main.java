@@ -39,7 +39,9 @@ public class Main
 			while( ( s = reader.readLine() ) != null )
 			{
 				temp = s.split("");
-				item = new Item(temp[0], getProp(temp[1]));
+				if(temp.length < 2)  //此行有错
+					continue;
+				item = new Item(temp[0], Item.getProp(temp[1]));
 				dictionary.add(item);
 			}
 			reader.close();
@@ -48,57 +50,93 @@ public class Main
 			e.printStackTrace();
 		}
 		
-		
-		System.out.println("字典读取完毕...");
+		System.out.println("字典读取完毕, 共有" + dictionary.size() + "条词汇");
 		return dictionary;
 		
 	}
 	
 	/**
-	 * 返回对应属性
-	 * @param prop
+	 * 读取测试文件
+	 * @param filePath
 	 * @return
 	 */
-	public static int getProp(String prop)
+	public static List<String> readTestFile(String filePath)
 	{
-		int property = Item.PROP_NONE;
-		
-		switch (prop) {
-		case "none.":
-			property = Item.PROP_NONE;
-			break;
-		case "abbr.":
-			property = Item.PROP_ABBR;
-			break;
-		case "n.":
-			property = Item.PROP_NOUN;
-			break;
-		case "v":
-			property = Item.PROP_VERB;
-			break;
-		case "adj.":
-			property = Item.PROP_ADJ;
-			break;
-		case "adv":
-			property = Item.PROP_ADV;
-			break;
-		default:
-			property = Item.PROP_OTHER;
-			break;
+		List<String> list = new ArrayList<>();
+		File file = new File(filePath);
+		if(!file.exists())
+		{
+			System.out.println("文件不存在，请检查文件路径是否正确");
+			System.exit(1);
 		}
-		return property;
+		
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
+			String s = null;
+			
+			while( ( s = reader.readLine() ) != null )
+			{
+				list.add(s.trim());
+			}
+			reader.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("测试文件读取完毕，共有" + list.size() + "个单词...");
+		return list;
 	}
+	
+	/**
+	 * 获取单词原始形式,暂未实现
+	 * @param word
+	 * @return
+	 */
+	public static String getOriginForm(String word)
+	{
+		String origin = null;
+		
+		return origin;
+	}
+
 	
 	/**
 	 * 判断单词是否存在
 	 * @param dictionary
 	 * @param word
+	 * @return
 	 */
-	public static void isExists(Item[] dictionary, String word)
+	public static Item isExists(List<Item> dictionary, String word)
 	{
-		
+		for(Item item : dictionary)
+		{
+			if( item.getWord().equals(word) )
+				return item;
+		}
+		return null; //不存在
 	}
 	
+	/**
+	 * 输出查到的单词
+	 * @param dictionary
+	 * @param words
+	 */
+	public static void printItem(List<Item> dictionary, List<String> words)
+	{
+		Item temp = null;
+		for( String word : words )
+		{
+			if( null != ( temp = isExists(dictionary, word) ) )
+			{
+				System.out.println("单词：" + temp.getWord() + " , 属性为 : " + Item.printProp(temp.getProperty()) );
+			}
+			else
+			{
+				System.out.println("暂未收录该单词--" + word + "...");
+			}
+		}
+	}
 	/**
 	 * 打印字典
 	 * @param dic
@@ -113,7 +151,12 @@ public class Main
 	
 	public static void main(String[] args)
 	{
-		List<Item> dic = readDictionaryFile("resource/dic_ec.txt");  //读取文件内容
-		printDictionary(dic);
+		List<Item> dic = readDictionaryFile("resource/dic_ec.txt");  //读取文件内容,存储字典
+		//printDictionary(dic);
+		List<String> words = readTestFile("resource/test.txt");  //读取测试文件
+		System.out.println();
+		System.out.println();
+		printItem(dic, words);
+		
 	}
 }
