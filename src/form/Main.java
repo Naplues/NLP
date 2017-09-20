@@ -39,9 +39,12 @@ public class Main
 			while( ( s = reader.readLine() ) != null )
 			{
 				temp = s.split("");
-				if(temp.length < 2)  //此行有错
+				if(temp.length < 3)  //此行有错
 					continue;
-				item = new Item(temp[0], Item.getProp(temp[1]));
+				List<Integer> propList = new ArrayList<>();
+				for(int i = 1; i< temp.length; i+=2)
+					propList.add(new Integer( Item.getProp(temp[i]) ));
+				item = new Item(temp[0], propList);  //增加多重属性
 				dictionary.add(item);
 			}
 			reader.close();
@@ -129,7 +132,12 @@ public class Main
 		{
 			if( null != ( temp = isExists(dictionary, word) ) )
 			{
-				System.out.println("单词：" + temp.getWord() + " , 属性为 : " + Item.printProp(temp.getProperty()) );
+				System.out.print("单词：" + temp.getWord() + " , 属性为 : "  );
+				for(Integer i : temp.getProperty() )
+				{
+					System.out.print(Item.printProp(i) + " ");
+				}
+				System.out.println();
 			}
 			else
 			{

@@ -1,4 +1,7 @@
 package form;
+
+import java.util.List;
+
 /**
  * 字典条目
  * @author gzq
@@ -17,10 +20,10 @@ public class Item
 	public static int PROP_CONJ = 6;
 	
 	private String word;   //单词
-	private int property;  //属性
+	private List<Integer> property;  //属性
 	
 	
-	public Item(String word, int property) {
+	public Item(String word, List<Integer> property) {
 		super();
 		this.word = word;
 		this.property = property;
@@ -31,10 +34,10 @@ public class Item
 	public void setWord(String word) {
 		this.word = word;
 	}
-	public int getProperty() {
+	public List<Integer> getProperty() {
 		return property;
 	}
-	public void setProperty(int property) {
+	public void setProperty(List<Integer> property) {
 		this.property = property;
 	}
 	
