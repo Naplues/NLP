@@ -85,4 +85,17 @@ public class Item
 		}
 		return property;
 	}
+	/**
+	 * 重写toString方法
+	 */
+	public String toString()
+	{
+		String string = null;
+		string = "单词：" + this.getWord() + " , 属性为 : ";
+		for(Integer i : this.getProperty() )
+		{
+			string += Item.printProp(i) + " ";
+		}
+		return string;
+	}
 }

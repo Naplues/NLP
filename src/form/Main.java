@@ -132,12 +132,7 @@ public class Main
 		{
 			if( null != ( temp = isExists(dictionary, word) ) )
 			{
-				System.out.print("单词：" + temp.getWord() + " , 属性为 : "  );
-				for(Integer i : temp.getProperty() )
-				{
-					System.out.print(Item.printProp(i) + " ");
-				}
-				System.out.println();
+				System.out.println(temp);
 			}
 			else
 			{
@@ -152,9 +147,7 @@ public class Main
 	public static void printDictionary(List<Item> dic)
 	{
 		for( Item item : dic )
-		{
-			System.out.println(item.getWord() + " " + item.getProperty() );
-		}
+			System.out.println(item);
 	}
 	
 	public static void main(String[] args)
