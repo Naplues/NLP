@@ -126,4 +126,50 @@ public class Item
 		}
 		return string;
 	}
+	
+	/**
+	 * 判断单词是否存在
+	 * @param dictionary
+	 * @param word
+	 * @return
+	 */
+	public static Item isExists(List<Item> dictionary, String word)
+	{
+		for(Item item : dictionary)
+		{
+			if( item.getWord().equals(word) )
+				return item;
+		}
+		return null; //不存在
+	}
+	
+	/**
+	 * 输出查到的单词
+	 * @param dictionary
+	 * @param words
+	 */
+	public static void printItem(List<Item> dictionary, List<String> words)
+	{
+		Item temp = null;
+		for( String word : words )
+		{
+			if( null != ( temp = isExists(dictionary, word) ) )
+			{
+				System.out.println(temp);
+			}
+			else
+			{
+				System.out.println("暂未收录该单词--" + word + "...");
+			}
+		}
+	}
+	/**
+	 * 打印字典
+	 * @param dic
+	 */
+	public static void printDictionary(List<Item> dic)
+	{
+		for( Item item : dic )
+			System.out.println(item);
+	}
 }
