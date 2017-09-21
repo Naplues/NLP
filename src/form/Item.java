@@ -7,7 +7,7 @@ import java.util.List;
  * @author gzq
  *
  */
-public class Item 
+public class Item
 {
 	//单词属性
 	public static int PROP_OTHER = -1;
@@ -18,6 +18,15 @@ public class Item
 	public static int PROP_ADJ = 4;
 	public static int PROP_ADV = 5;
 	public static int PROP_CONJ = 6;
+	public static int PROP_VBL = 7;
+	public static int PROP_VT = 8;
+	public static int PROP_INT = 9;
+	public static int PROP_VI = 10;
+	public static int PROP_PREP = 11;
+	public static int PROP_PL = 12;
+	public static int PROP_ART = 13;
+	public static int PROP_NUM = 14;
+	public static int PROP_PRON = 15;
 	
 	private String word;   //单词
 	private List<Integer> property;  //属性
@@ -60,6 +69,16 @@ public class Item
 			case "adj.":  property = Item.PROP_ADJ; break;
 			case "adv.":  property = Item.PROP_ADV; break;
 			case "conj.": property = Item.PROP_CONJ; break;
+			case "vbl.": property = Item.PROP_VBL; break;
+			case "vt.": property = Item.PROP_VT; break;
+			case "int.": property = Item.PROP_INT; break;
+			case "vi.": property = Item.PROP_VI; break;
+			case "prep.": property = Item.PROP_PREP; break;
+			case "pl.": property = Item.PROP_PL; break;
+			case "art.": property = Item.PROP_ART; break;
+			case "num.": property = Item.PROP_NUM; break;
+			case "pron.": property = Item.PROP_PRON; break;
+			
 			default:      property = Item.PROP_OTHER; break;
 		}
 		return property;
@@ -81,6 +100,15 @@ public class Item
 			case 4 : property = "adj."; break;
 			case 5 : property = "adv."; break;
 			case 6 : property = "conj."; break;
+			case 7 : property = "vbl."; break;
+			case 8 : property = "vt."; break;
+			case 9 : property = "int."; break;
+			case 10: property = "vi."; break;
+			case 11: property = "prep.";break;
+			case 12: property = "pl."; break;
+			case 13: property = "art."; break;
+			case 14: property = "num."; break;
+			case 15: property = "pron."; break;
 			default: property = "other"; break;
 		}
 		return property;
