@@ -10,19 +10,6 @@ import java.util.List;
 public class Main 
 {
 	
-	/**
-	 * 获取单词原始形式,暂未实现
-	 * @param word
-	 * @return
-	 */
-	public static String getOriginForm(String word)
-	{
-		String origin = null;
-		
-		return origin;
-	}
-	
-	
 	
 	public static void main(String[] args)
 	{

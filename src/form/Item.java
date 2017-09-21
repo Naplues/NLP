@@ -127,6 +127,31 @@ public class Item
 		return string;
 	}
 	
+
+
+	/**
+	 * 打印字典
+	 * @param dic
+	 */
+	public static void printDictionary(List<Item> dic)
+	{
+		for( Item item : dic )
+			System.out.println(item);
+	}
+	/**
+	 * 匹配-ed形式的单词
+	 * @param word
+	 */
+	public static String match(String word)
+	{
+		String origin = null;
+		if(word.endsWith("ed"))
+			origin = word.substring(0, word.length()-2);
+		if(word.endsWith("ing"))
+			origin = word.substring(0, word.length()-3);
+		return origin;
+	}
+	
 	/**
 	 * 判断单词是否存在
 	 * @param dictionary
@@ -137,10 +162,29 @@ public class Item
 	{
 		for(Item item : dictionary)
 		{
-			if( item.getWord().equals(word) )
+			if( item.getWord().equals(word) )  //单词在字典中存在
 				return item;
 		}
 		return null; //不存在
+	}
+	
+	/**
+	 * 获取单词原始形式,暂未实现
+	 * @param word
+	 * @return
+	 */
+	public static Item getOriginForm(List<Item> dictionary, String word)
+	{
+		Item item = null;
+		if( null != (item = isExists(dictionary, word)) )  //单词本身是原型
+		{
+			return item;
+		}
+		if( null != (item = isExists(dictionary, match(word))) )  //单词-ed还原
+		{
+			return item;
+		}
+		return item;
 	}
 	
 	/**
@@ -153,7 +197,7 @@ public class Item
 		Item temp = null;
 		for( String word : words )
 		{
-			if( null != ( temp = isExists(dictionary, word) ) )
+			if( null != ( temp = getOriginForm(dictionary, word) ) )
 			{
 				System.out.println(temp);
 			}
@@ -162,14 +206,5 @@ public class Item
 				System.out.println("暂未收录该单词--" + word + "...");
 			}
 		}
-	}
-	/**
-	 * 打印字典
-	 * @param dic
-	 */
-	public static void printDictionary(List<Item> dic)
-	{
-		for( Item item : dic )
-			System.out.println(item);
 	}
 }
