@@ -2,6 +2,8 @@ package form;
 
 import java.util.List;
 
+import helper.Files;
+
 /**
  * 形态还原算法
  * @author gzq
