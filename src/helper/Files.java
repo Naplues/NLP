@@ -84,7 +84,52 @@ public class Files
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("测试文件读取完毕，共有" + list.size() + "个单词...\n");
+		System.out.println("测试文件读取完毕，共有" + list.size() + "行...\n");
 		return list;
+	}
+	
+	/**
+	 * 读取汉语词典
+	 * @param filePath
+	 * @return
+	 */
+	public static List<String> readChineseDictionary(String filePath)
+	{
+		List<String> list = new ArrayList<>();
+		File file = new File(filePath);
+		if(!file.exists())
+		{
+			System.out.println("汉语词典不存在，请检查文件路径是否正确");
+			System.exit(1);
+		}
+		
+		BufferedReader reader;
+		try {
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
+			String s = null;
+			
+			while( ( s = reader.readLine() ) != null )
+			{
+				list.add(s.trim().split(",")[0]);
+			}
+			reader.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("汉语词典读取完毕，共有" + list.size() + "个词语...\n");
+		return list;
+	}
+	
+	/**
+	 * 打印
+	 * @param list
+	 */
+	public static void printString(List<String> list)
+	{
+		for(String item : list)
+		{
+			System.out.println(item);
+		}
 	}
 }
