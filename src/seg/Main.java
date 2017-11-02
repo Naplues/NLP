@@ -1,4 +1,4 @@
-package form;
+package seg;
 
 import java.util.List;
 

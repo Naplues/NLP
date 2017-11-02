@@ -1,4 +1,4 @@
-package auto.div.word;
+package token;
 /**
  * 分词类
  * @author gzq

@@ -1,4 +1,4 @@
-package auto.div.word;
+package token;
 
 import java.util.List;
 
