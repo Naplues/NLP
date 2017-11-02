@@ -10,24 +10,32 @@ import java.util.List;
 public class Item
 {
 	//单词属性
-	public static int PROP_OTHER = -1;
-	public static int PROP_NONE = 0;
-	public static int PROP_ABBR = 1;
-	public static int PROP_NOUN = 2;
-	public static int PROP_VERB = 3;
-	public static int PROP_ADJ = 4;
-	public static int PROP_ADV = 5;
-	public static int PROP_CONJ = 6;
-	public static int PROP_VBL = 7;
-	public static int PROP_VT = 8;
-	public static int PROP_INT = 9;
-	public static int PROP_VI = 10;
-	public static int PROP_PREP = 11;
-	public static int PROP_PL = 12;
-	public static int PROP_ART = 13;
-	public static int PROP_NUM = 14;
-	public static int PROP_PRON = 15;
+	public static int PROP_OTHER = 0;  //其他类别
+
+	public static int PROP_ABBR = 1;    //略语
+	public static int PROP_ADJ = 2;     //形容词
+	public static int PROP_ADV = 3;     //副词
+	public static int PROP_ART = 4;    //冠词
+	public static int PROP_AUX = 5;    //助动词
 	
+	public static int PROP_CONJ = 6;    //连词
+	
+	public static int PROP_INT = 7;     //感叹词
+	
+	public static int PROP_NONE = 8;    //
+	public static int PROP_NOUN = 9;    //名词
+	public static int PROP_NUM = 10;    //数词
+	
+	public static int PROP_PL = 11;     //名词复数
+	public static int PROP_PREP = 12;   //介词
+	public static int PROP_PRON = 13;   //代词
+	
+	public static int PROP_VBL = 14;     //动词变体
+	public static int PROP_VERB = 15;    //动词
+	public static int PROP_VI = 16;     //不及物动词
+	public static int PROP_VP = 17;     //
+	public static int PROP_VT = 18;      //及物动词
+
 	private String word;   //单词
 	private List<Integer> property;  //属性
 	
@@ -62,22 +70,29 @@ public class Item
 		
 		switch (prop)
 		{
-			case "none.": property = Item.PROP_NONE; break;
 			case "abbr.": property = Item.PROP_ABBR; break;
-			case "n.":    property = Item.PROP_NOUN; break;
-			case "v.":     property = Item.PROP_VERB; break;
 			case "adj.":  property = Item.PROP_ADJ; break;
 			case "adv.":  property = Item.PROP_ADV; break;
-			case "conj.": property = Item.PROP_CONJ; break;
-			case "vbl.": property = Item.PROP_VBL; break;
-			case "vt.": property = Item.PROP_VT; break;
-			case "int.": property = Item.PROP_INT; break;
-			case "vi.": property = Item.PROP_VI; break;
-			case "prep.": property = Item.PROP_PREP; break;
-			case "pl.": property = Item.PROP_PL; break;
 			case "art.": property = Item.PROP_ART; break;
+			case "aux.": property = Item.PROP_AUX; break;
+			
+			case "conj.": property = Item.PROP_CONJ; break;
+			
+			case "int.": property = Item.PROP_INT; break;
+			
+			case "none.": property = Item.PROP_NONE; break;
+			case "n.":    property = Item.PROP_NOUN; break;
 			case "num.": property = Item.PROP_NUM; break;
+			
+			case "pl.": property = Item.PROP_PL; break;
+			case "prep.": property = Item.PROP_PREP; break;
 			case "pron.": property = Item.PROP_PRON; break;
+			
+			case "vbl.": property = Item.PROP_VBL; break;
+			case "v.":     property = Item.PROP_VERB; break;
+			case "vi.": property = Item.PROP_VI; break;
+			case "vp.": property = Item.PROP_VP; break;
+			case "vt.": property = Item.PROP_VT; break;
 			
 			default:      property = Item.PROP_OTHER; break;
 		}
@@ -93,22 +108,30 @@ public class Item
 		String property = null;
 		switch (type)
 		{
-			case 0 : property = "none."; break;
 			case 1 : property = "abbr."; break;
-			case 2 : property = "n."; break;
-			case 3 : property = "v."; break;
-			case 4 : property = "adj."; break;
-			case 5 : property = "adv."; break;
+			case 2 : property = "adj."; break;
+			case 3 : property = "adv."; break;
+			case 4 : property = "art."; break;
+			case 5 : property = "aux."; break;
+			
 			case 6 : property = "conj."; break;
-			case 7 : property = "vbl."; break;
-			case 8 : property = "vt."; break;
-			case 9 : property = "int."; break;
-			case 10: property = "vi."; break;
-			case 11: property = "prep.";break;
-			case 12: property = "pl."; break;
-			case 13: property = "art."; break;
-			case 14: property = "num."; break;
-			case 15: property = "pron."; break;
+			
+			case 7 : property = "int."; break;
+			
+			case 8 : property = "none."; break;
+			case 9 : property = "n."; break;
+			case 10: property = "num."; break;
+			
+			case 11: property = "pl.";break;
+			case 12: property = "prep."; break;
+			case 13: property = "pron."; break;
+			
+			case 14: property = "vbl."; break;
+			case 15: property = "v."; break;
+			case 16: property = "vi."; break;
+			case 17: property = "vp."; break;
+			case 18: property = "vt."; break;
+			
 			default: property = "other"; break;
 		}
 		return property;
@@ -127,7 +150,6 @@ public class Item
 		return string;
 	}
 	
-
 
 	/**
 	 * 打印字典
